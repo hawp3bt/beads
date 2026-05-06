@@ -60,7 +60,8 @@ func (bs *BeadStore) load() error {
 		// Derive bead name by stripping the suffix
 		beadName := strings.TrimSuffix(name, ".formula.toml")
 		// Skip names that start with underscore — I use those as drafts/WIP formulas
-		if strings.HasPrefix(beadName, "_") {
+		// Also skip names starting with "~" — I use those for broken/disabled formulas
+		if strings.HasPrefix(beadName, "_") || strings.HasPrefix(beadName, "~") {
 			continue
 		}
 		bs.Beads[beadName] = &Bead{
