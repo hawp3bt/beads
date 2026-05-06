@@ -59,6 +59,10 @@ func (bs *BeadStore) load() error {
 		}
 		// Derive bead name by stripping the suffix
 		beadName := strings.TrimSuffix(name, ".formula.toml")
+		// Skip names that start with underscore — I use those as drafts/WIP formulas
+		if strings.HasPrefix(beadName, "_") {
+			continue
+		}
 		bs.Beads[beadName] = &Bead{
 			Name:    beadName,
 			Formula: filepath.Join(bs.FormulasDir, name),
