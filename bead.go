@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 )
 
@@ -75,11 +76,13 @@ func (bs *BeadStore) Get(name string) (*Bead, error) {
 	return b, nil
 }
 
-// List returns all bead names registered in the store.
+// List returns all bead names registered in the store, sorted alphabetically.
+// Sorted output makes it easier to scan when you have a lot of formulas.
 func (bs *BeadStore) List() []string {
 	names := make([]string, 0, len(bs.Beads))
 	for name := range bs.Beads {
 		names = append(names, name)
 	}
+	sort.Strings(names)
 	return names
 }
