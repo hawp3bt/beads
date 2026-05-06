@@ -16,7 +16,10 @@ const (
 
 func main() {
 	if err := cmd.Execute(version, appName); err != nil {
+		// Print error to stderr and exit with a non-zero status code.
+		// Using exit code 2 to distinguish usage/runtime errors from
+		// the default exit code 1 used by the OS for general errors.
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
-		os.Exit(1)
+		os.Exit(2)
 	}
 }
