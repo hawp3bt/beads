@@ -63,7 +63,8 @@ func (bs *BeadStore) load() error {
 		// Also skip names starting with "~" — I use those for broken/disabled formulas
 		// Also skip names starting with "." — I use those for local-only/private formulas
 		// Also skip names starting with "@" — I use those for experimental/testing formulas
-		if strings.HasPrefix(beadName, "_") || strings.HasPrefix(beadName, "~") || strings.HasPrefix(beadName, ".") || strings.HasPrefix(beadName, "@") {
+		// Also skip names starting with "#" — I use those for archived/old formulas I want to keep around
+		if strings.HasPrefix(beadName, "_") || strings.HasPrefix(beadName, "~") || strings.HasPrefix(beadName, ".") || strings.HasPrefix(beadName, "@") || strings.HasPrefix(beadName, "#") {
 			continue
 		}
 		bs.Beads[beadName] = &Bead{
