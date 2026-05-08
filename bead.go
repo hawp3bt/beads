@@ -65,7 +65,8 @@ func (bs *BeadStore) load() error {
 		// Also skip names starting with "@" — I use those for experimental/testing formulas
 		// Also skip names starting with "#" — I use those for archived/old formulas I want to keep around
 		// Also skip names starting with "!" — I use those for formulas that need attention/fixing
-		if strings.HasPrefix(beadName, "_") || strings.HasPrefix(beadName, "~") || strings.HasPrefix(beadName, ".") || strings.HasPrefix(beadName, "@") || strings.HasPrefix(beadName, "#") || strings.HasPrefix(beadName, "!") {
+		// Also skip names starting with "%" — I use those for formulas borrowed from others that I haven't vetted yet
+		if strings.HasPrefix(beadName, "_") || strings.HasPrefix(beadName, "~") || strings.HasPrefix(beadName, ".") || strings.HasPrefix(beadName, "@") || strings.HasPrefix(beadName, "#") || strings.HasPrefix(beadName, "!") || strings.HasPrefix(beadName, "%") {
 			continue
 		}
 		bs.Beads[beadName] = &Bead{
